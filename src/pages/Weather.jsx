@@ -38,8 +38,8 @@ const Weather = () => {
     // console.log(weatherInfo);
     return (
         <>
-            <div className="min-h-screen bg-blend-darken flex flex-col items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
-                <div className="absolute inset-0 bg-black opacity-50"></div>
+            <div className="h-[100vh] bg-blend-darken flex flex-col items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
+                <div className="absolute inset-0 bg-black opacity-70"></div>
                 <div className="relative z-10">
 
                     <SearchBox updateInfo={updateInfo} />
