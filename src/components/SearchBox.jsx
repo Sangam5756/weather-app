@@ -39,11 +39,12 @@ const SearchBox = ({ updateInfo }) => {
                             onChange={handlechange}
                             required
                             value={city}
-                            className='bg-blue-300 rounded-md px-3 py-2 '
+                            placeholder='Enter City name...'
+                            className='bg-blue-100 rounded-md px-3 py-2 '
                         />
                         <div className='flex items-center py-3'>
 
-                            <button className='rounded-md bg-red-700  hover:bg-green-600 px-3 py-1' type="submit">search</button>
+                            <button className='rounded-md text-white font-bold bg-black opacity-50 hover:opacity-100 hover:text-black hover:bg-blue-600 px-3 py-1' type="submit">search</button>
 
                         </div>
                         {error && <p style={{ color: "red" }}>No such place exists</p>}

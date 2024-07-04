@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import SliderData from "./previousWeatherMobile";
 import dateFormat, { masks } from "dateformat";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function PreviousWeather({ cityName }) {
   const [data, setData] = useState([]);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
-  };
+  
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -48,70 +37,37 @@ function PreviousWeather({ cityName }) {
   return (
     <div>
 
-      <div className="text-center hidden lg:block py-2" name="forecast">
-        <span className="text-center  font-bold text-2xl ">Weather Prediction</span>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            
-            justifyContent: "center",
-            gap: 2,
-            p: 2,
-            overflowX: "auto sm:overflow-x-auto"
-          }}
-        >
+      <div className=" text-center hidden lg:block py-2" name="forecast">
+        <span className="text-center text-white font-bold text-2xl ">Weather Prediction</span>
+        <div className="flex w-full  justify-center  items-center mt-2 gap-3">
+
           {data.length > 0 ? (
             data.map((entry, index) => (
-              <Card
-                key={index}
-                sx={{
-                  width: { xs: "100%", sm: "45%", md: "30%", lg: "17%" },
-                  m: 1,
-                }}
-              >
-                <CardContent>
-                  <Typography
-                    sx={{ fontSize: 12 }}
-                    color="text.secondary"
-                    gutterBottom
-                    className="flex"
-                  >
-                    <p className='text-center text-md  font-semibold ml-auto mr-auto'>{dateFormat(entry.dt_txt, "dddd, d mmmm yyyy")}</p>
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    Temp: {(entry.main.temp - 273.15).toFixed(2)}°C
-                  </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {entry.weather[0].description}
-                  </Typography>
-                  <Typography variant="body2">
-                    <ul>
-                      <li>
-                        Min Temp: {(entry.main.temp_min - 273.15).toFixed(2)}°C
-                      </li>
-                      <li>
-                        Max Temp: {(entry.main.temp_max - 273.15).toFixed(2)}°C
-                      </li>
-                      <li>Humidity: {entry.main.humidity}%</li>
-                      <li>Wind Speed: {entry.wind.speed} m/s</li>
-                    </ul>
-                  </Typography>
-                </CardContent>
-              </Card>
+
+             <div className="bg-black opacity-70">
+               <div className=" border text-white  border-white w-[250px] h-[200px] py-6">
+                <p className='text-center text-md  font-semibold ml-auto mr-auto'>{dateFormat(entry.dt_txt, "dddd, d mmmm yyyy")}</p>
+                <div className="gap-5 py-3">
+                  <p className="text-md font-semibold">{(entry.main.temp - 273.15).toFixed(2)}°C</p>
+                  <p className="">{entry.weather[0].description}</p>
+                  <p className="mt-8  ">Humidity : {entry.main.humidity}% </p>
+                  <p> Feels_like : {(entry.main.feels_like - 273.15).toFixed(2)}°C  </p>
+                </div>
+              </div>
+             </div>
+
+
             ))
           ) : (
-            <Typography>Loading...</Typography>
+            <p>Loading...</p>
           )}
-        </Box>
 
-
-
+        </div>
       </div>
 
-        <div className="lg:hidden ">
-        <SliderData data={data}/>
-        </div>
+      <div className="lg:hidden ">
+        <SliderData data={data} />
+      </div>
 
 
 

@@ -11,6 +11,7 @@ export const  getWeatherInfo = async (city) => {
       console.log(jsonresponse);
       let result = {
         city: city,
+        date:jsonresponse.dt,
         temp: jsonresponse.main.temp,
         temp_min: jsonresponse.main.temp_min,
         temp_max: jsonresponse.main.temp_max,
