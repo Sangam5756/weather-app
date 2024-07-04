@@ -1,0 +1,58 @@
+import React from 'react'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import dateFormat, { masks } from "dateformat";
+
+const SliderData = ({ data }) => {
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+  };
+
+  console.log("data", data)
+  return (
+    <div className='flex flex-col w-[350px] mt-5 ml-auto mr-auto justify-center '>
+      {/* Slider  */}
+
+      <div className=" text-center  py-5 bg-pink-500">
+        <span className="text-center  font-bold text-3xl py-10">Weather Prediction</span>
+
+        {data.length > 0 ? (
+          <Slider {...settings}>
+            {data.map((weatherData, index) => (
+
+              <div className="bg-blend-screen shadow-xl py-5 text-center w-80 text-white">
+                <p className='text-center text-md  font-semibold ml-auto mr-auto'>{dateFormat(weatherData.dt_txt, "dddd, d mmmm yyyy")}</p>
+
+                <div className='gap-5 py-3'>
+                  <p className='text-md font-semibold'> {(weatherData.main.temp - 273.15).toFixed(2)}°C</p>
+                  <p>{weatherData.main.weather}</p>
+                  <br />
+                  <p>Feels Like: {(weatherData.main.feels_like - 273.15).toFixed(2)}°C &nbsp;&nbsp;&nbsp; humidity : {weatherData.main.humidity}%</p></div>
+              </div>
+
+            ))}
+          </Slider>
+        ) : (
+          <Typography>Loading...</Typography>
+        )}
+      </div>
+
+
+    </div>
+  )
+}
+
+export default SliderData
