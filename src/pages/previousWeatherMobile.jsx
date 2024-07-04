@@ -38,7 +38,7 @@ const SliderData = ({ data }) => {
 
                 <div className='gap-5 py-3'>
                   <p className='text-md font-semibold'> {(weatherData.main.temp - 273.15).toFixed(2)}°C</p>
-                  <p>{weatherData.main.weather}</p>
+                  <p >{weatherData.weather[0].description}</p>
                   <br />
                   <p>Feels Like: {(weatherData.main.feels_like - 273.15).toFixed(2)}°C &nbsp;&nbsp;&nbsp; humidity : {weatherData.main.humidity}%</p></div>
               </div>
